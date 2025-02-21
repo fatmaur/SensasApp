@@ -26,7 +26,7 @@ const ControlPanel = () => {
       />
 
       {/* Çalışma durumu */}
-      <Text style={styles.status}>
+      <Text style={[styles.status, {color: fanSpeed === 0 ? 'red' : 'green'}]}>
         {fanSpeed === 0 ? 'Çalışmıyor' : 'Çalışıyor'}
       </Text>
     </View>
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   status: {
     fontSize: 20,
-    color: 'green',
   },
 });
 
