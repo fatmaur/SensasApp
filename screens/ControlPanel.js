@@ -1,44 +1,53 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Slider from '@react-native-community/slider';  // Slider'ı bu şekilde içeri aktarıyoruz
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import Slider from "@react-native-community/slider";
 
 const ControlPanel = () => {
-  // Pervane hızı state'i, varsayılan olarak 0
   const [fanSpeed, setFanSpeed] = useState(0);
 
-  // Hız değiştikçe yapılacak işlem
   const handleSpeedChange = (value) => {
     setFanSpeed(value);
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Pervane Hızı: {fanSpeed}%</Text>
-
-      {/* Kaydırmalı çubuk ile hız seçimi */}
-      <Slider
-        style={styles.slider}
-        minimumValue={0}
-        maximumValue={100}
-        step={25}
-        value={fanSpeed}
-        onValueChange={handleSpeedChange}
-      />
-
-      {/* Çalışma durumu */}
-      <Text style={[styles.status, {color: fanSpeed === 0 ? 'red' : 'green'}]}>
-        {fanSpeed === 0 ? 'Çalışmıyor' : 'Çalışıyor'}
-      </Text>
-    </View>
+    <ImageBackground
+      source={require("../assets/background.jpg")}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.text}>Pervane Hızı: {fanSpeed}%</Text>
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={100}
+          step={25}
+          value={fanSpeed}
+          onValueChange={handleSpeedChange}
+        />
+        <Text style={[styles.status, { color: fanSpeed === 0 ? "red" : "green" }]}>
+          {fanSpeed === 0 ? "Çalışmıyor" : "Çalışıyor"}
+        </Text>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.8)",
+    width: "100%",
+    height: "100%",
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
   },
   text: {
     fontSize: 24,
